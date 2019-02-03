@@ -1,6 +1,5 @@
-import itchat, re, datetime, io, logging
+import itchat, re, logging
 from itchat.content import TEXT
-from datetime import datetime
 
 FORMAT = "[%(asctime)-15s] [%(levelname)-8s] file \"%(pathname)s\", line %(lineno)d, in %(funcName)s \n\t%(message)s"
 
