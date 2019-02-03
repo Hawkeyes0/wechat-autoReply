@@ -2,7 +2,7 @@ import itchat, re, datetime, io, logging
 from itchat.content import TEXT
 from datetime import datetime
 
-FORMAT = "[%(asctime)-15s] [%(levelname)-8s] %(message)s"
+FORMAT = "[%(asctime)-15s] [%(levelname)-8s] file \"%(pathname)s\", line %(lineno)d, in %(funcName)s \n\t%(message)s"
 
 # 日志文件
 handler = logging.FileHandler("msg.log", encoding="UTF-8")
@@ -13,8 +13,9 @@ handler = logging.StreamHandler()
 handler.formatter = logging.Formatter(FORMAT)
 logging.root.addHandler(handler)
 
-logging.root.setLevel(logging.INFO)
-logging.info('start')
+logger = logging.getLogger('autoReply')
+logger.setLevel(logging.INFO)
+logger.info('start')
 
 # 只处理文本信息
 @itchat.msg_register([TEXT])
@@ -33,7 +34,7 @@ def text_reply(msg):
         log += f": {msg.Text}"
         # print(log, file=f, flush=True)
         # print(log)
-        logging.info(log)
+        logger.info(log)
 
 # 自动登陆
 itchat.auto_login(hotReload=True)
