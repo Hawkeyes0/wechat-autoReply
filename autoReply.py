@@ -42,7 +42,7 @@ def group_text_reply(msg):
     # 正则匹配消息文本
     match = re.search('年|春', msg['Text'])
     # 排除自己发的内容和已经回复的群
-    if msg.isAt:
+    if msg.isAt and match:
         msg.user.send(u'@%s\u2005新春快乐！年年有鱼！' % (msg.ActualNickName))
         log = u'[%s] %s: \n%s' % (msg.user.NickName, msg.ActualNickName, msg.Text)
         logger.info(log)
